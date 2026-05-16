@@ -1,6 +1,6 @@
 ---
 spec: ironclad
-version: 0.0.14
+version: 0.0.15
 status: draft
 language: ko (translation of README.md — for human comprehension only)
 license: MIT
@@ -36,7 +36,7 @@ inspired_by:
 | `detectors.schema.json` | 19 detector contract (JSON Schema + 카탈로그) | v0.0.1 drafted |
 | `ears.md` | EARS AC 문법 (5 패턴 + BNF) | v0.0.1 drafted |
 | `GOVERNANCE.md` | RFC 절차 · BDFL · 외부 채택 | v0.1 drafted |
-| `conformance/` | Level test suite | v0.0.1 (L1 only) |
+| `conformance/` | Level test suite (L1-L4) | v0.0.1 drafted |
 
 ## [VERSIONING] 버전 정책
 
@@ -73,9 +73,9 @@ ears: <full | partial>
 
 5 절은 *load-bearing*: 정체성 (CLAIM), 범위 (DIMENSIONS), 인벤토리 (ARTIFACTS), 진화 (VERSIONING), 정직 (LIMITATIONS). 진입용 2 절 추가: 용어집 (terminology lookup) + 호환성 (외부 선언 형식). 그 이상은 artifact 파일 (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`) 에 속함 — README 는 *index* 이지 *spec body* 아님.
 
-## [LIMITATIONS] 현재 한계 v0.0.14
+## [LIMITATIONS] 현재 한계 v0.0.15
 
-- conformance test suite 는 Level 1 만 (L2-L4 TBD)
-- 정식 RFC 트랙 없음
+- conformance test suite 가 4 level 모두 cover, 단 첫 외부 도구 호환 선언 기반 정밀화 보류
+- 정식 RFC 트랙 없음 (첫 RFC 시 proposals/ 생성)
 - 외부 채택 사례 없음
 - BDFL-only governance (qwerfunch 단독)

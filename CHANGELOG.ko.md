@@ -13,6 +13,24 @@ Ironclad 표준의 모든 의미 있는 변경 사항.
 
 표준 버전은 `harness-boot` (reference implementation) 버전과 **독립**.
 
+## v0.0.15 - 2026-05-17
+
+### Added
+- `conformance/level-2.md` v0.0.1: Level 2 (Mocked Logic) 의 2 fixture — Unit (hard) + Cov (soft).
+- `conformance/level-3.md` v0.0.1: Level 3 (Full Empirical) 의 3 fixture — Smoke (hard, integration/system/e2e 흡수) + Perf (soft) + Visual (hard, VRT).
+- `conformance/level-4.md` v0.0.1: Level 4 (HITL) 의 2 fixture — Audit + UAT 를 **checklist 절차** 로 (manual review infrastructure), 4 `[TOOL_REQUIREMENTS]` 동반 (identity tracking, per-AC sign-off, audit trail, anti-self-certification guard).
+- 3 level 모두 `.ko.md` 한국어 번역 짝.
+
+### Changed
+- `conformance/README.md` `[STRUCTURE]` 표: L2/L3/L4 status TBD → `v0.0.1 drafted`.
+- `conformance/README.md` `[LIMITATIONS]`: "Level 1 fixture 만" → "4 level 모두 drafted, 첫 외부 선언 기반 정밀화 보류".
+- README `[ARTIFACTS]`: `conformance/` status → `v0.0.1 drafted` (L1-L4).
+- README `[LIMITATIONS]`: conformance 항목 재작성 — 전체 cover 반영.
+
+### Note
+- L4 fixture 는 의도적으로 checklist 형식 (manual review infrastructure) — pass/fail case 아님. L4 는 *사람 판단 infrastructure* 검증이지 *도구 동작* 검증 아님.
+- 본 commit 으로 *진짜 MVP* 완성: spec 의 4-level 약속이 conformance fixture 로 100% 증명 가능. 이전 v0.0.14 는 seed (L1 만).
+
 ## v0.0.14 - 2026-05-16
 
 ### Added

@@ -23,9 +23,9 @@ Ironclad Level N 호환성 선언을 위한 test fixture.
 | level | 파일 | 범위 | 상태 |
 |---|---|---|---|
 | L1 | `level-1.md` | 6 static stage (Type · Lint · Drift · Commit · Arch · Secret) | v0.0.1 drafted |
-| L2 | `level-2.md` | 2 mocked logic stage (Unit · Cov) | TBD |
-| L3 | `level-3.md` | 3 empirical stage (Smoke · Perf · Visual) | TBD |
-| L4 | `level-4.md` | 2 HITL stage (Audit · UAT) | TBD |
+| L2 | `level-2.md` | 2 mocked logic stage (Unit · Cov) | v0.0.1 drafted |
+| L3 | `level-3.md` | 3 empirical stage (Smoke · Perf · Visual) | v0.0.1 drafted |
+| L4 | `level-4.md` | 2 HITL stage (Audit · UAT) — checklist form | v0.0.1 drafted |
 
 ## [DECLARATION_FORMAT] 선언 형식
 
@@ -63,7 +63,8 @@ ears:          <full | partial | none>
 
 ## [LIMITATIONS] v0.0.1 한계
 
-- Level 1 fixture 만 제공. L2-L4 TBD.
+- 4 level 모두 drafted. 첫 외부 도구 호환 선언 기반 정밀화.
 - 자동 test runner 아직 없음 — 도구가 self-verify. Phase B+ 에서 audit tooling 추가 가능.
 - Fixture 는 시나리오 서술. 언어/스택 무관 — 각 도구가 자기 stack 에 매핑.
+- L4 fixture 는 checklist 절차 (manual review infrastructure) — pass/fail case 아님. L1-L3 와 다른 검증 모델.
 

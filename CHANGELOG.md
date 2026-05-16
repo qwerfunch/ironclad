@@ -10,6 +10,24 @@ All notable changes to the Ironclad standard.
 
 Spec version is independent from `harness-boot` (reference implementation) version.
 
+## v0.0.15 - 2026-05-17
+
+### Added
+- `conformance/level-2.md` v0.0.1: 2 fixtures for Level 2 (Mocked Logic) — Unit (hard) + Cov (soft).
+- `conformance/level-3.md` v0.0.1: 3 fixtures for Level 3 (Full Empirical) — Smoke (hard, subsumes integration/system/e2e) + Perf (soft) + Visual (hard, VRT).
+- `conformance/level-4.md` v0.0.1: 2 fixtures for Level 4 (HITL) — Audit + UAT as **checklist procedures** (manual review infrastructure), plus 4 `[TOOL_REQUIREMENTS]` (identity tracking, per-AC sign-off, audit trail, anti-self-certification guard).
+- All 3 levels paired with `.ko.md` Korean translations.
+
+### Changed
+- `conformance/README.md` `[STRUCTURE]` table: L2/L3/L4 status TBD → `v0.0.1 drafted`.
+- `conformance/README.md` `[LIMITATIONS]`: "Only Level 1 fixtures" → "All 4 levels drafted, refinement pending first external declaration".
+- README `[ARTIFACTS]`: `conformance/` status → `v0.0.1 drafted` (L1-L4).
+- README `[LIMITATIONS]`: rewrote conformance line to reflect full coverage.
+
+### Note
+- L4 fixtures intentionally checklist-form (manual review infrastructure), not pass/fail cases — L4 verifies human judgment infrastructure, not tool behavior.
+- This commit completes the *real MVP*: spec's 4-level promise is now 100% verifiable via conformance fixtures. Previous v0.0.14 was a seed (L1 only).
+
 ## v0.0.14 - 2026-05-16
 
 ### Added

@@ -1,6 +1,6 @@
 ---
 spec: ironclad
-version: 0.0.14
+version: 0.0.15
 status: draft
 license: MIT
 reference_implementation: https://github.com/qwerfunch/harness-boot
@@ -33,7 +33,7 @@ falsifiable: the standard is negated if any one of the three pieces is found to 
 | `detectors.schema.json` | 19 detector contract (JSON Schema + catalog) | v0.0.1 drafted |
 | `ears.md` | EARS AC grammar (5 patterns + BNF) | v0.0.1 drafted |
 | `GOVERNANCE.md` | RFC procedure · BDFL · adoption | v0.1 drafted |
-| `conformance/` | Level test suite | v0.0.1 (L1 only) |
+| `conformance/` | Level test suite (L1-L4) | v0.0.1 drafted |
 
 ## [VERSIONING]
 
@@ -70,9 +70,9 @@ Example: `iron-law: L2, detectors: 5/19, ears: partial` = the tool enforces up t
 
 5 sections is load-bearing: identity (CLAIM), scope (DIMENSIONS), inventory (ARTIFACTS), evolution (VERSIONING), honesty (LIMITATIONS). Two more for entry: glossary (terminology lookup) and conformance (external declaration form). Anything beyond belongs to the artifact files (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`) — README is the index, not the spec body.
 
-## [LIMITATIONS] v0.0.14
+## [LIMITATIONS] v0.0.15
 
-- conformance test suite covers Level 1 only (L2-L4 TBD)
-- no formal RFC track
+- conformance test suite covers all 4 levels, but refinement based on first external tool declaration pending
+- no formal RFC track (proposals/ created on first RFC)
 - no external adoption
 - BDFL-only governance (qwerfunch)

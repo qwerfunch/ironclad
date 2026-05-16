@@ -20,9 +20,9 @@ Test fixtures for declaring Ironclad Level N conformance.
 | level | file | scope | status |
 |---|---|---|---|
 | L1 | `level-1.md` | 6 static stages (Type · Lint · Drift · Commit · Arch · Secret) | v0.0.1 drafted |
-| L2 | `level-2.md` | 2 mocked logic stages (Unit · Cov) | TBD |
-| L3 | `level-3.md` | 3 empirical stages (Smoke · Perf · Visual) | TBD |
-| L4 | `level-4.md` | 2 HITL stages (Audit · UAT) | TBD |
+| L2 | `level-2.md` | 2 mocked logic stages (Unit · Cov) | v0.0.1 drafted |
+| L3 | `level-3.md` | 3 empirical stages (Smoke · Perf · Visual) | v0.0.1 drafted |
+| L4 | `level-4.md` | 2 HITL stages (Audit · UAT) — checklist form | v0.0.1 drafted |
 
 ## [DECLARATION_FORMAT]
 
@@ -60,7 +60,8 @@ Each stage fixture follows a uniform structure:
 
 ## [LIMITATIONS] v0.0.1
 
-- Only Level 1 fixtures provided. L2-L4 TBD.
+- All 4 levels drafted. Refinement based on first external tool conformance declaration.
 - No automated test runner yet — tools self-verify; Phase B+ may add audit tooling.
 - Fixtures describe scenarios, not language-specific code (each tool maps to its own stack).
+- L4 fixtures are checklist procedures (manual review infrastructure), not pass/fail cases — different verification model from L1-L3.
 
