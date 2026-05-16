@@ -7,11 +7,26 @@ language: ko (translation of CHANGELOG.md — for human comprehension only)
 
 # 변경 이력 (한국어 대조본)
 
-> 본 문서는 [`CHANGELOG.md`](./CHANGELOG.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`CHANGELOG.md`](../../CHANGELOG.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
 
 Ironclad 표준의 모든 의미 있는 변경 사항.
 
 표준 버전은 `harness-boot` (reference implementation) 버전과 **독립**.
+
+## v0.0.17 - 2026-05-17
+
+### Changed
+- 한국어 번역 미러를 sibling `.ko.md` 파일에서 `i18n/ko/` 디렉터리로 이동 (Kubernetes/WCAG 번역 패턴). `git mv` 로 10 파일:
+  - root: README · CHANGELOG · iron-law · ears · GOVERNANCE
+  - conformance/: README · level-1 · level-2 · level-3 · level-4
+- 파일명 정규화: `*.ko.md` → `*.md` (디렉터리 위치가 언어 표시).
+- 모든 cross-link 와 `references:` frontmatter 경로 조정 (root 는 `../../X`, conformance 는 `../../../X`).
+- README `[STRUCTURE_RATIONALE]` 에 Translations 노트 추가.
+
+### Note
+- 영어 root 가 SSoT. 번역본 비규범 · 이해 보조용만.
+- 패턴이 산업 spec 표준 정합 (대부분 spec: 영어 only; 번역 가능 spec: 별도 디렉터리 또는 repo).
+- 외부 채택 = 0 인 *지금* 진행 — 본 재구성의 *유일한 무료 변경 시점*.
 
 ## v0.0.16 - 2026-05-17
 

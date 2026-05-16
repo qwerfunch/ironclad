@@ -1,6 +1,6 @@
 ---
 spec: ironclad
-version: 0.0.16
+version: 0.0.17
 status: draft
 license: MIT
 reference_implementation: https://github.com/qwerfunch/harness-boot
@@ -79,7 +79,9 @@ Example: `iron-law: L2, detectors: 5/19, ears: partial` = the tool enforces up t
 
 Anything beyond belongs to the artifact files (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`, `conformance/`) — README is the index, not the spec body.
 
-## [LIMITATIONS] v0.0.16
+**Translations** (non-normative, comprehension aid only): see `i18n/<lang>/` for translated mirrors. The English root is the SSoT; on any conflict, the English text wins.
+
+## [LIMITATIONS] v0.0.17
 
 - conformance test suite covers all 4 levels, but refinement based on first external tool declaration pending
 - no formal RFC track (proposals/ created on first RFC)

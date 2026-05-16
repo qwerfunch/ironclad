@@ -5,14 +5,14 @@ status: draft
 parent: ironclad
 language: ko (translation of README.md — for human comprehension only)
 references:
-  - ../iron-law.md
-  - ../detectors.schema.json
-  - ../GOVERNANCE.md
+  - ../../../iron-law.md
+  - ../../../detectors.schema.json
+  - ../../../GOVERNANCE.md
 ---
 
 # Conformance (한국어 대조본)
 
-> 본 문서는 [`README.md`](./README.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`README.md`](../../../conformance/README.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
 
 ## [CLAIM] 핵심 정의
 

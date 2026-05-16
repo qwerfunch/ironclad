@@ -5,15 +5,15 @@ status: draft
 parent: ironclad
 language: ko (translation of ears.md — for human comprehension only)
 references:
-  - iron-law.md
-  - detectors.schema.json
+  - ../../iron-law.md
+  - ../../detectors.schema.json
 based_on: "Mavin, A. et al. (2009) Easy Approach to Requirements Syntax"
 modal_authority: "RFC 2119 (shall / must / should differentiation)"
 ---
 
 # EARS — 수용 기준 문법 (한국어 대조본)
 
-> 본 문서는 [`ears.md`](./ears.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`ears.md`](../../ears.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
 
 ## [CLAIM] 핵심 정의
 

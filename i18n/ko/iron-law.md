@@ -5,14 +5,14 @@ status: draft
 parent: ironclad
 language: ko (translation of iron-law.md — for human comprehension only)
 references:
-  - detectors.schema.json
-  - ears.md
-  - GOVERNANCE.md
+  - ../../detectors.schema.json
+  - ../../ears.md
+  - ../../GOVERNANCE.md
 ---
 
 # Iron Law (한국어 대조본)
 
-> 본 문서는 [`iron-law.md`](./iron-law.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`iron-law.md`](../../iron-law.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
 
 ## [CLAIM] 핵심 정의
 

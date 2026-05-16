@@ -5,12 +5,12 @@ status: draft
 parent: ironclad/conformance
 language: ko (translation of level-2.md — for human comprehension only)
 references:
-  - ../iron-law.md
+  - ../../../iron-law.md
 ---
 
 # Level 2 (Mocked Logic) — Conformance Fixtures (한국어 대조본)
 
-> 본 문서는 [`level-2.md`](./level-2.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`level-2.md`](../../../conformance/level-2.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
 
 ## [CLAIM] 핵심 정의
 

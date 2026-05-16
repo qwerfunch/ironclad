@@ -1,6 +1,6 @@
 ---
 spec: ironclad
-version: 0.0.16
+version: 0.0.17
 status: draft
 language: ko (translation of README.md — for human comprehension only)
 license: MIT
@@ -13,7 +13,7 @@ inspired_by:
 
 # Ironclad 표준 (한국어 대조본)
 
-> 본 문서는 [`README.md`](./README.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 사양 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`README.md`](../../README.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 사양 충돌 시 **영어 본이 우선**.
 
 ## [CLAIM] 핵심 주장
 
@@ -82,7 +82,9 @@ ears: <full | partial>
 
 그 이상은 artifact 파일 (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`, `conformance/`) 에 속함 — README 는 *index* 이지 *spec body* 아님.
 
-## [LIMITATIONS] 현재 한계 v0.0.16
+**번역본 (비규범, 이해 보조용)**: `i18n/<lang>/` 디렉터리에 번역 미러. 영어 root 가 SSoT — 충돌 시 영어 본 우선.
+
+## [LIMITATIONS] 현재 한계 v0.0.17
 
 - conformance test suite 가 4 level 모두 cover, 단 첫 외부 도구 호환 선언 기반 정밀화 보류
 - 정식 RFC 트랙 없음 (첫 RFC 시 proposals/ 생성)

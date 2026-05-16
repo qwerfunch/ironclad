@@ -5,8 +5,8 @@ status: draft
 parent: ironclad
 language: ko (translation of GOVERNANCE.md — for human comprehension only)
 references:
-  - iron-law.md
-  - CHANGELOG.md
+  - ../../iron-law.md
+  - ../../CHANGELOG.md
 inspired_by:
   - "Python PEP 1 (BDFL → Steering Council)"
   - "CNCF Governance (TSC + Maintainer)"
@@ -15,7 +15,7 @@ inspired_by:
 
 # 거버넌스 (한국어 대조본)
 
-> 본 문서는 [`GOVERNANCE.md`](./GOVERNANCE.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
+> 본 문서는 [`GOVERNANCE.md`](../../GOVERNANCE.md) (영어 SSoT) 의 한국어 번역 — *이해 보조용*. 충돌 시 **영어 본이 우선**.
 
 ## [CLAIM] 핵심 정의
 
@@ -121,7 +121,7 @@ Quorum 미달 vote 는 *비구속* (advisory only).
 
 ## [VERSIONING] 버전 정책
 
-SemVer 정책은 [`CHANGELOG.md`](./CHANGELOG.md) 참조 (major: breaking · minor: additive · patch: doc).
+SemVer 정책은 [`CHANGELOG.md`](../../CHANGELOG.md) 참조 (major: breaking · minor: additive · patch: doc).
 
 버전 bump 는 Maintainer 책임. RFC accept PR merge 가 트리거.
 

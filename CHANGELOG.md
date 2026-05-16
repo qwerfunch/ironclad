@@ -10,6 +10,21 @@ All notable changes to the Ironclad standard.
 
 Spec version is independent from `harness-boot` (reference implementation) version.
 
+## v0.0.17 - 2026-05-17
+
+### Changed
+- Korean translation mirrors moved from sibling `.ko.md` files to `i18n/ko/` directory (Kubernetes/WCAG translation pattern). 10 files migrated via `git mv`:
+  - root: README · CHANGELOG · iron-law · ears · GOVERNANCE
+  - conformance/: README · level-1 · level-2 · level-3 · level-4
+- File names normalized: `*.ko.md` → `*.md` (directory location now indicates language).
+- All cross-links and `references:` frontmatter paths adjusted (`../../X` for root, `../../../X` for conformance/).
+- README `[STRUCTURE_RATIONALE]` adds Translations note.
+
+### Note
+- English root is the SSoT. Translations non-normative, comprehension-aid only.
+- Pattern aligns with industry spec norms (most specs: English-only; translation-capable specs: separate directory or repo).
+- Done now while external adoption = 0 — only zero-cost window for this reorganization.
+
 ## v0.0.16 - 2026-05-17
 
 ### Added
