@@ -13,6 +13,20 @@ Ironclad 표준의 모든 의미 있는 변경 사항.
 
 표준 버전은 `harness-boot` (reference implementation) 버전과 **독립**.
 
+## v0.0.16 - 2026-05-17
+
+### Added
+- README `[GLOSSARY]`: 4 conformance 어휘 추가 (Conformance Level · Fixture · Pass Signal · Fail Signal) — 7 → 11.
+- `iron-law.md` `[CONFORMANCE]`: `conformance/level-{1,2,3,4}.md` test fixture cross-link 추가.
+
+### Changed
+- README `[STRUCTURE_RATIONALE]`: self-counting bug 정정. 이전 "5 + 2 = 7" (self 누락) → "5 + 2 entry + 1 self = 8 절" — 자기 meta-layer 정직 명시.
+
+### Note
+- 20 파일 frontmatter version-sync 검증.
+- 모든 references 필드 cross-link 검증.
+- detectors.schema.json: 19 detector · 4 axes · 2 severities · 3 statuses · 13/19 alias · 7/19 notes · 고유 ID 모두 valid.
+
 ## v0.0.15 - 2026-05-17
 
 ### Added

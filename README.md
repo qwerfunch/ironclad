@@ -1,6 +1,6 @@
 ---
 spec: ironclad
-version: 0.0.15
+version: 0.0.16
 status: draft
 license: MIT
 reference_implementation: https://github.com/qwerfunch/harness-boot
@@ -65,12 +65,21 @@ Example: `iron-law: L2, detectors: 5/19, ears: partial` = the tool enforces up t
 | AC | Acceptance Criterion — one testable requirement (see `ears.md` BNF) | requirement · acceptance test |
 | EARS | constrained natural-language grammar for ACs | requirement syntax (Mavin 2009) |
 | HITL | Human-in-the-Loop — Level 4 of Iron Law (mandatory human review) | manual gate · acceptance review |
+| Conformance Level | a tool's declared Iron Law level (L1-L4); cumulative | WCAG conformance level · SLSA level |
+| Fixture | one test case (pass case + fail case) defined in `conformance/level-N.md` | test case · scenario |
+| Pass Signal | tool output proving a fixture's pass case succeeded | green check · exit 0 |
+| Fail Signal | tool output proving a fixture's fail case correctly fails | red flag · non-zero exit |
 
 ## [STRUCTURE_RATIONALE]
 
-5 sections is load-bearing: identity (CLAIM), scope (DIMENSIONS), inventory (ARTIFACTS), evolution (VERSIONING), honesty (LIMITATIONS). Two more for entry: glossary (terminology lookup) and conformance (external declaration form). Anything beyond belongs to the artifact files (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`) — README is the index, not the spec body.
+8 sections total, structured as 5 + 2 + 1:
+- **5 core** (load-bearing): identity (CLAIM), scope (DIMENSIONS), inventory (ARTIFACTS), evolution (VERSIONING), honesty (LIMITATIONS).
+- **2 entry** (external adoption): GLOSSARY (terminology lookup) + CONFORMANCE (declaration form).
+- **1 self** (meta): STRUCTURE_RATIONALE — this section, explaining its own structure.
 
-## [LIMITATIONS] v0.0.15
+Anything beyond belongs to the artifact files (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`, `conformance/`) — README is the index, not the spec body.
+
+## [LIMITATIONS] v0.0.16
 
 - conformance test suite covers all 4 levels, but refinement based on first external tool declaration pending
 - no formal RFC track (proposals/ created on first RFC)

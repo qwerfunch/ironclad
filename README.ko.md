@@ -1,6 +1,6 @@
 ---
 spec: ironclad
-version: 0.0.15
+version: 0.0.16
 status: draft
 language: ko (translation of README.md — for human comprehension only)
 license: MIT
@@ -68,12 +68,21 @@ ears: <full | partial>
 | AC | Acceptance Criterion — 검증 가능한 단일 요구사항 (see `ears.md` BNF) | requirement · acceptance test |
 | EARS | AC 의 제약된 자연어 문법 | requirement syntax (Mavin 2009) |
 | HITL | Human-in-the-Loop — Iron Law 의 Level 4 (사람 검토 필수) | manual gate · acceptance review |
+| Conformance Level | 도구가 선언한 Iron Law level (L1-L4); 누적 | WCAG conformance level · SLSA level |
+| Fixture | `conformance/level-N.md` 에 정의된 test case 하나 (pass case + fail case) | test case · scenario |
+| Pass Signal | fixture 의 pass case 가 성공함을 증명하는 도구 출력 | green check · exit 0 |
+| Fail Signal | fixture 의 fail case 가 올바르게 실패함을 증명하는 도구 출력 | red flag · non-zero exit |
 
-## [STRUCTURE_RATIONALE] 5 절의 정당화
+## [STRUCTURE_RATIONALE] 8 절의 정당화
 
-5 절은 *load-bearing*: 정체성 (CLAIM), 범위 (DIMENSIONS), 인벤토리 (ARTIFACTS), 진화 (VERSIONING), 정직 (LIMITATIONS). 진입용 2 절 추가: 용어집 (terminology lookup) + 호환성 (외부 선언 형식). 그 이상은 artifact 파일 (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`) 에 속함 — README 는 *index* 이지 *spec body* 아님.
+8 절 총 = 5 + 2 + 1 구조:
+- **5 core** (load-bearing): 정체성 (CLAIM), 범위 (DIMENSIONS), 인벤토리 (ARTIFACTS), 진화 (VERSIONING), 정직 (LIMITATIONS).
+- **2 entry** (외부 채택): GLOSSARY (terminology lookup) + CONFORMANCE (선언 형식).
+- **1 self** (meta): STRUCTURE_RATIONALE — 본 절, 자기 구조 설명.
 
-## [LIMITATIONS] 현재 한계 v0.0.15
+그 이상은 artifact 파일 (`iron-law.md`, `detectors.schema.json`, `ears.md`, `GOVERNANCE.md`, `conformance/`) 에 속함 — README 는 *index* 이지 *spec body* 아님.
+
+## [LIMITATIONS] 현재 한계 v0.0.16
 
 - conformance test suite 가 4 level 모두 cover, 단 첫 외부 도구 호환 선언 기반 정밀화 보류
 - 정식 RFC 트랙 없음 (첫 RFC 시 proposals/ 생성)

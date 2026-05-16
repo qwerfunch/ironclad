@@ -104,7 +104,7 @@ product    conforms to L3
 regulated  conforms to L4
 ```
 
-외부 도구는 `iron-law: L<N>` 형태로 호환성 선언 가능.
+외부 도구는 `iron-law: L<N>` 형태로 호환성 선언 가능. 각 level 검증을 위한 test fixture 는 `conformance/level-{1,2,3,4}.md` 참조.
 
 `risk-aware override`: `entities[].sensitive` 플래그 또는 security / payment area 피처는 자동으로 한 단계 상향 (예: product 모드의 sensitive=true 피처 → L4 강제).
 

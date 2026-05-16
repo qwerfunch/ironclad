@@ -10,6 +10,20 @@ All notable changes to the Ironclad standard.
 
 Spec version is independent from `harness-boot` (reference implementation) version.
 
+## v0.0.16 - 2026-05-17
+
+### Added
+- README `[GLOSSARY]`: 4 conformance terms (Conformance Level · Fixture · Pass Signal · Fail Signal) added (7 → 11).
+- `iron-law.md` `[CONFORMANCE]`: cross-link to `conformance/level-{1,2,3,4}.md` test fixtures.
+
+### Changed
+- README `[STRUCTURE_RATIONALE]`: self-counting bug fixed. Was "5 + 2 = 7" (omitted self). Now "5 + 2 entry + 1 self = 8 sections" — honest about its own meta-layer.
+
+### Note
+- All 20 files frontmatter version-sync verified.
+- All references field cross-links verified.
+- detectors.schema.json: 19 detectors · 4 axes · 2 severities · 3 statuses · 13/19 alias · 7/19 notes · unique IDs all valid.
+
 ## v0.0.15 - 2026-05-17
 
 ### Added

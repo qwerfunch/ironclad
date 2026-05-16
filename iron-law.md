@@ -103,7 +103,7 @@ product    conforms to L3
 regulated  conforms to L4
 ```
 
-External tools can declare conformance as: `iron-law: L<N>`.
+External tools can declare conformance as: `iron-law: L<N>`. See `conformance/level-{1,2,3,4}.md` for the test fixtures required to validate each level.
 
 `risk-aware override`: a feature flagged `entities[].sensitive` or in security/payment area auto-elevates one level (e.g., product feature with sensitive=true → L4 enforced).
 
