@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ironclad-spec/detectors.schema.json",
+  "title": "Ironclad Drift Detectors",
+  "description": "Catalog of 19 drift detectors with self-describing schema. See iron-law.md stage_1.3 Drift for usage.",
+  "spec": "ironclad/detectors",
+  "version": "0.0.2",
+  "status": "draft",
+  "parent": "ironclad",
+
+  "rationale": {
+    "count_is_load_bearing": "19 detectors balanced across 4 axes: spec_vs_code(6) + code_vs_test(6) + spec_vs_test(4) + environment(3). Every Trinity boundary covered; environmental concerns separated.",
+    "duplicates_intentional": {
+      "HARDCODED_SECRET_vs_iron_law_stage_1.6": "intentional double net — stage_1.6 is a dedicated gate, detector #11 is the integrated drift category. Same check, two entry points (defense in depth).",
+      "UNTESTED_AC_vs_MISSING_TESTS": "different granularity — UNTESTED_AC is AC-level (each AC needs a test), MISSING_TESTS is code-level (each changed module needs a test).",
+      "STALE_EVIDENCE_vs_EVIDENCE_MISMATCH": "different dimension — STALE is time-based (spec changed after), MISMATCH is hash-based (re-run differs).",
+      "STALE_SPECIFICATION_vs_UNMAPPED_ARTIFACT": "opposite directions — spec orphan (no code/test) vs code orphan (no spec)."
+    },
+    "absent_detectors_and_placement": {
+      "Dependency Vulnerability": "out of MVP — deferred to v0.1.x (security-focused minor).",
+      "API Contract Breakage": "subsumed by ARCHITECTURE_VIOLATION + AC_DRIFT.",
+      "Documentation Drift": "subsumed by AC_DRIFT (AC is primary spec doc) + META_INTEGRITY (sigil-cited facts).",
+      "Type Safety Erosion (any/@ts-ignore)": "subsumed by iron-law stage_1.1 Type + stage_1.2 Lint.",
+      "License Compliance": "out of MVP — project-level concern, not standard scope."
+    }
+  },
+
+  "type": "object",
+  "required": ["version", "detectors"],
+  "properties": {
+    "version": {"const": "0.0.1"},
+    "detectors": {
+      "type": "array",
+      "minItems": 19,
+      "maxItems": 19,
+      "items": {"$ref": "#/$defs/Detector"}
+    }
+  },
+
+  "$defs": {
+    "Severity": {
+      "enum": ["error", "warn"],
+      "description": "error = blocks complete() · warn = notify only"
+    },
+    "ComparisonAxis": {
+      "enum": ["spec_vs_code", "code_vs_test", "spec_vs_test", "environment"],
+      "description": "Which two SSoT pieces are compared, or environmental integrity"
+    },
+    "DetectorStatus": {
+      "enum": ["implemented", "renaming", "planned"],
+      "description": "implemented = active in reference impl · renaming = exists under legacy name · planned = not yet implemented"
+    },
+    "Detector": {
+      "type": "object",
+      "required": ["id", "name", "axis", "severity", "description", "pass_criteria", "status"],
+      "properties": {
+        "id":              {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "name":            {"type": "string"},
+        "industry_alias":  {"type": "string", "description": "Equivalent term in industry literature (when applicable)"},
+        "axis":            {"$ref": "#/$defs/ComparisonAxis"},
+        "severity":        {"$ref": "#/$defs/Severity"},
+        "description":     {"type": "string"},
+        "input":           {"type": "array", "items": {"type": "string"}},
+        "pass_criteria":   {"type": "string"},
+        "remediation":     {"type": "string"},
+        "legacy_kind":     {"type": "string", "description": "DriftKind name in harness-boot reference impl"},
+        "status":          {"$ref": "#/$defs/DetectorStatus"},
+        "notes":           {"type": "string", "description": "Disambiguation, scope clarification, or implementation note"}
+      },
+      "additionalProperties": false
+    },
+    "DriftFinding": {
+      "type": "object",
+      "description": "Emitted when a detector fires",
+      "required": ["detector_id", "severity", "message"],
+      "properties": {
+        "detector_id": {"type": "string"},
+        "severity":    {"$ref": "#/$defs/Severity"},
+        "message":     {"type": "string"},
+        "path":        {"type": "string"},
+        "line":        {"type": "integer"},
+        "hint":        {"type": "string"}
+      }
+    }
+  },
+
+  "detectors": [
+    {
+      "id": "UNMAPPED_ARTIFACT",
+      "name": "Unmapped Artifact",
+      "industry_alias": "Orphan Artifact",
+      "axis": "spec_vs_code",
+      "severity": "error",
+      "description": "Tracked source file (.ts, .py, .go, etc.) not declared in any feature module",
+      "input": ["spec.features[].modules[]", "source tree"],
+      "pass_criteria": "every tracked source artifact maps to a feature module",
+      "remediation": "sync --reverse (update spec) OR remove orphan artifact",
+      "status": "planned"
+    },
+    {
+      "id": "MISSING_IMPLEMENTATION",
+      "name": "Missing Implementation",
+      "industry_alias": "Missing Code",
+      "axis": "spec_vs_code",
+      "severity": "error",
+      "description": "Spec declares feature done but source artifact absent",
+      "input": ["spec.features[].modules[]", "source tree"],
+      "pass_criteria": "every declared module file exists",
+      "remediation": "work <fid> --resume",
+      "legacy_kind": "Code",
+      "status": "renaming"
+    },
+    {
+      "id": "AC_DRIFT",
+      "name": "AC Drift",
+      "industry_alias": "Requirement Drift",
+      "axis": "spec_vs_code",
+      "severity": "error",
+      "description": "Acceptance criterion changed but related logic not updated",
+      "input": ["spec.features[].acceptance_criteria", "code anchors"],
+      "pass_criteria": "AC content hash matches anchor reference",
+      "remediation": "replan",
+      "legacy_kind": "AcceptanceTrace",
+      "status": "renaming"
+    },
+    {
+      "id": "TECH_STACK_MISMATCH",
+      "name": "Tech-Stack Mismatch",
+      "industry_alias": "Stack Violation",
+      "axis": "spec_vs_code",
+      "severity": "warn",
+      "description": "Library not in declared stack used",
+      "input": ["spec.architecture.stack", "dependency manifests"],
+      "pass_criteria": "all dependencies in declared allowlist",
+      "remediation": "add to spec stack OR remove dependency",
+      "status": "planned"
+    },
+    {
+      "id": "ARCHITECTURE_VIOLATION",
+      "name": "Architecture Violation",
+      "industry_alias": "Architecture Linting (archunit, dependency-cruiser)",
+      "axis": "spec_vs_code",
+      "severity": "error",
+      "description": "Layer or dependency direction rule violated",
+      "input": ["architecture/*.yaml", "import graph"],
+      "pass_criteria": "no edge violates declared layer order",
+      "remediation": "refactor or update arch rule",
+      "status": "planned"
+    },
+    {
+      "id": "CONVENTION_DRIFT",
+      "name": "Convention/Philosophy Drift",
+      "industry_alias": "Semantic Lint",
+      "axis": "spec_vs_code",
+      "severity": "warn",
+      "description": "Code style/pattern violation beyond syntactic lint (naming idioms, architectural patterns, philosophy)",
+      "input": ["architecture/conventions.yaml", "AST"],
+      "pass_criteria": "all rules match",
+      "remediation": "manual fix OR update convention rule",
+      "notes": "Differs from iron-law stage_1.2 Lint: this is semantic (e.g., naming patterns), Lint is syntactic.",
+      "status": "planned"
+    },
+    {
+      "id": "MISSING_TESTS",
+      "name": "Missing Tests",
+      "industry_alias": "Test Gap",
+      "axis": "code_vs_test",
+      "severity": "error",
+      "description": "Logic changed but no test added",
+      "input": ["source tree diff", "test tree"],
+      "pass_criteria": "every changed logic file has a corresponding test",
+      "remediation": "add test before complete",
+      "legacy_kind": "Evidence",
+      "notes": "Code-level granularity. AC-level gap = UNTESTED_AC.",
+      "status": "renaming"
+    },
+    {
+      "id": "STALE_TESTS",
+      "name": "Stale Tests",
+      "industry_alias": "Test Lag",
+      "axis": "code_vs_test",
+      "severity": "warn",
+      "description": "Implementation changed but test unchanged",
+      "input": ["source diff", "test tree"],
+      "pass_criteria": "tests touched within window after impl change",
+      "remediation": "review and update tests",
+      "status": "planned"
+    },
+    {
+      "id": "COVERAGE_DROP",
+      "name": "Coverage Drop",
+      "industry_alias": "Coverage Regression",
+      "axis": "code_vs_test",
+      "severity": "warn",
+      "description": "Coverage fell below threshold",
+      "input": ["coverage report", "threshold config"],
+      "pass_criteria": "current coverage >= threshold",
+      "remediation": "add tests OR adjust threshold with rationale",
+      "legacy_kind": "Coverage",
+      "status": "renaming"
+    },
+    {
+      "id": "EVIDENCE_MISMATCH",
+      "name": "Evidence Mismatch",
+      "axis": "code_vs_test",
+      "severity": "error",
+      "description": "Recorded evidence hash differs from current run hash (evidence stale at runtime)",
+      "input": ["state.yaml evidence", "current run"],
+      "pass_criteria": "hashes match OR evidence re-declared",
+      "remediation": "re-run gate, re-declare evidence",
+      "notes": "Hash-based (deterministic). Time-based version = STALE_EVIDENCE.",
+      "status": "planned"
+    },
+    {
+      "id": "HARDCODED_SECRET",
+      "name": "Hardcoded Secret",
+      "industry_alias": "Secret Scanning (gitleaks, trufflehog)",
+      "axis": "code_vs_test",
+      "severity": "error",
+      "description": "Sensitive credential in tracked file",
+      "input": ["tracked files"],
+      "pass_criteria": "no API key/token/password pattern match",
+      "remediation": "rotate credential + use secret store",
+      "notes": "Intentional double net with iron-law stage_1.6 Secret — same check, two entry points (defense in depth).",
+      "status": "planned"
+    },
+    {
+      "id": "PERFORMANCE_DRIFT",
+      "name": "Performance Drift",
+      "industry_alias": "Performance Regression",
+      "axis": "code_vs_test",
+      "severity": "warn",
+      "description": "Measured perf exceeds budget or regressed",
+      "input": ["performance_budget", "perf result"],
+      "pass_criteria": "within budget AND no significant regression",
+      "remediation": "perf_regression evidence + fix",
+      "status": "planned"
+    },
+    {
+      "id": "UNTESTED_AC",
+      "name": "Untested AC",
+      "axis": "spec_vs_test",
+      "severity": "error",
+      "description": "AC has no corresponding test case",
+      "input": ["spec.features[].acceptance_criteria", "test tree"],
+      "pass_criteria": "every AC ID referenced by at least one test",
+      "remediation": "add test OR remove AC",
+      "legacy_kind": "AcceptanceTrace",
+      "notes": "AC-level granularity. Code-level gap = MISSING_TESTS.",
+      "status": "renaming"
+    },
+    {
+      "id": "STATUS_DRIFT",
+      "name": "Status Drift",
+      "axis": "spec_vs_test",
+      "severity": "error",
+      "description": "Feature status disagrees with integration evidence",
+      "input": ["state.yaml status", "integration_anchor"],
+      "pass_criteria": "done feature has integration anchor wired",
+      "remediation": "wire integration OR revert status",
+      "legacy_kind": "AnchorIntegration",
+      "status": "renaming"
+    },
+    {
+      "id": "STALE_EVIDENCE",
+      "name": "Stale Evidence",
+      "axis": "spec_vs_test",
+      "severity": "warn",
+      "description": "Spec changed after evidence captured",
+      "input": ["evidence timestamps", "spec change log"],
+      "pass_criteria": "evidence newer than relevant spec change",
+      "remediation": "re-run gate to refresh evidence",
+      "notes": "Time-based. Hash-based version = EVIDENCE_MISMATCH.",
+      "status": "planned"
+    },
+    {
+      "id": "STALE_SPECIFICATION",
+      "name": "Stale Specification",
+      "industry_alias": "Dead Spec",
+      "axis": "spec_vs_test",
+      "severity": "warn",
+      "description": "Spec entry no longer referenced by code or tests",
+      "input": ["spec.features[]", "source tree", "test tree"],
+      "pass_criteria": "every done feature referenced in src/",
+      "remediation": "prune --spec",
+      "legacy_kind": "Stale",
+      "notes": "Opposite direction to UNMAPPED_ARTIFACT (spec orphan vs code orphan).",
+      "status": "renaming"
+    },
+    {
+      "id": "HARNESS_INTEGRITY",
+      "name": "Harness Integrity",
+      "axis": "environment",
+      "severity": "error",
+      "description": "Harness config conflicts with runtime environment",
+      "input": ["harness.yaml", "spec canonical hash", "derived outputs"],
+      "pass_criteria": "canonical hashes match recorded values",
+      "remediation": "harness sync",
+      "legacy_kind": "Generated,Derived,Spec,Include",
+      "status": "renaming"
+    },
+    {
+      "id": "REFERENCE_INTEGRITY",
+      "name": "Reference Integrity",
+      "industry_alias": "Reference Validation",
+      "axis": "environment",
+      "severity": "error",
+      "description": "Cross-spec ID references broken",
+      "input": ["features[].depends_on", "decisions[].supersedes", "protocols"],
+      "pass_criteria": "every ID reference resolves",
+      "remediation": "heal --refs",
+      "legacy_kind": "Anchor,Protocol,Adr",
+      "status": "renaming"
+    },
+    {
+      "id": "META_INTEGRITY",
+      "name": "Meta-Integrity",
+      "axis": "environment",
+      "severity": "error",
+      "description": "Meta-doc sigil claims diverge from cited source-of-truth",
+      "input": ["CLAUDE.md sigils", "cited source files"],
+      "pass_criteria": "every sigil-cited fact matches source",
+      "remediation": "update sigil OR update source",
+      "legacy_kind": "Doc,ContentDrift",
+      "status": "renaming"
+    }
+  ]
+}
