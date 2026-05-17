@@ -1,6 +1,6 @@
 ---
 spec: ironclad/governance
-version: 0.2
+version: 0.3
 status: draft
 parent: ironclad
 language: ko (translation of GOVERNANCE.md — for human comprehension only)
@@ -125,6 +125,20 @@ SemVer 정책은 [`CHANGELOG.md`](../../CHANGELOG.md) 참조 (major: breaking ·
 
 버전 bump 는 Maintainer 책임. RFC accept PR merge 가 트리거.
 
+## [DRAFT_GRADUATION] draft → v1.0 졸업
+
+spec `status` 가 `draft` → 안정 `v1.0` 으로 전환되려면 **두 조건이 모두** 충족되어야 한다:
+
+1. **독립 구현체 2 개 이상**: 서로 다른 저자 / 조직의 reference 구현 2 개 이상이 L1-L4 conformance fixture suite 전체 통과 (see [`conformance/level-{1..4}.md`](../../conformance/)).
+2. **미해결 critical 반증 0 건**: accepted L4 반증이 미해결로 남아있지 않음 (see [`falsifications/README.md`](../../falsifications/README.md) `[ACCUMULATION_POLICY]`).
+
+v0.x = 단일 구현 (`harness-boot`) 부트스트랩 — 구성상 pre-1.0. 위 `[PHASES]` 의 Phase A→B 거버넌스 전환과 *별개 축*.
+
+| 조건 | 점검 | 현재 |
+|---|---|---|
+| L1-L4 fixture 통과 구현체 2+ | conformance/ 선언 | 1/2 (harness-boot 단독) |
+| 미해결 L4 반증 0 | falsifications/ status: accepted, unresolved | 0/0 (등록부 막 개설) |
+
 ## [DEPRECATION_POLICY] 폐기 정책
 
 spec 요소 (section · detector · EARS 패턴 · Level 등) 를 폐기해야 할 때:
@@ -169,10 +183,11 @@ spec 자체는 코드 실행 X — 본 취약점은 *spec 이 보호 못 하는 
 
 MIT — [`LICENSE`](./LICENSE) 참조.
 
-## [LIMITATIONS] v0.2 한계
+## [LIMITATIONS] v0.3 한계
 
 - `proposals/` 디렉터리 아직 없음 (첫 RFC 제기 시 생성).
 - `SECURITY.md` 아직 없음 (Phase B 진입 시 추가).
 - BDFL 승계 프로토콜 (maintainer 부재 시 어떻게) 아직 미정 — Phase B (다수 maintainer) 도달 시까지 보류.
 - Code of Conduct 아직 채택 X (Phase B trigger).
+- `[DRAFT_GRADUATION]` 현재 상태 (1/2 구현체, 0/0 반증) 는 v0.0.18 baseline 반영 — 두 조건 모두 zero-progress (외부 구현 없음, 등록부 막 개설).
 

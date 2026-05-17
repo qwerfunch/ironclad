@@ -10,6 +10,84 @@ All notable changes to the Ironclad standard.
 
 Spec version is independent from `harness-boot` (reference implementation) version.
 
+## v0.0.23 - 2026-05-18
+
+### Changed
+- `iron-law.md` → v0.0.6. Three honesty fixes from internal self-audit:
+  - `[LLM_COST_PROFILE]` closing line: removed undefined "constant-cost graph pruning" jargon; corrected Big-O misuse — per-feature LLM cost is bounded by a constant, total cost for N features is O(N) (previous "total LLM cost per feature is O(1)" conflated per-unit and total).
+  - `[STAGES]` Notes (stage_4.1): "breaks AI-self-certification" → "structural barrier against AI self-certification (not a cryptographic guarantee)". Aligns with `conformance/level-4.md [LIMITATIONS]` which admits rubber-stamping cannot be auto-detected.
+  - `[L4_DEFECT_CATEGORIES]`: added tie-break rule for defects mapping to multiple categories — classify by root cause (self-cert#2 over intent-misalignment#1 symptom; security#5 over trade-off#4 when threat-model rule involved).
+- `README.md` `[ARTIFACTS]`: `iron-law.md` row v0.0.5 → v0.0.6 (META_INTEGRITY maintained).
+- `README.md` frontmatter `version` 0.0.22 → 0.0.23.
+- i18n/ko mirrors synchronized.
+
+### Note
+- No new detector · no new stage · no new Level · no schema breaking. iron-law.md section count unchanged (12).
+- All three changes are honesty fixes (overstatement → calibrated language, undefined jargon → removed, implicit rule → explicit). No semantic redefinition.
+
+## v0.0.22 - 2026-05-18
+
+### Changed
+- `README.md` `[ARTIFACTS]`: `status` column → `version` column, with actual current versions (`iron-law.md` v0.0.5 · `detectors.schema.json` v0.0.3 · `ears.md` v0.0.2 · `GOVERNANCE.md` v0.3 · `conformance/` v0.0.1 · `falsifications/` v0.0.2). Removes "drafted" noise (frontmatter `status: draft` already records that). Resolves the META_INTEGRITY violation (5/6 rows previously stale at "v0.0.1 drafted").
+- `README.md` frontmatter `version` 0.0.20 → 0.0.22 (skips 0.0.21: that release added a one-line `[CLAIM]` cross-link without bumping README frontmatter — this patch bundles the bump with the substantive [ARTIFACTS]/[GLOSSARY] change).
+
+### Added
+- `README.md` `[GLOSSARY]` (11 → 14 entries): `Falsification` (counter-example concept; cited from README `[CLAIM]` since v0.0.18) · `Self-certification cycle` (cited from README `[CLAIM]` since v0.0.21) · `LLM-free verification budget` (cited from README `[CLAIM]` since v0.0.21). Closes the "README index references terms it does not define" gap.
+- i18n/ko mirrors synchronized.
+
+### Note
+- No new detector · no new stage · no new Level · no schema breaking.
+- Internal self-audit (v0.0.21 post-cleanup) surfaced these META_INTEGRITY drifts. Not from external critique.
+
+## v0.0.21 - 2026-05-17
+
+### Added
+- `iron-law.md` → v0.0.5. New `[AI_ERA_RATIONALE]`: two AI-era structural anchors (self-certification cycle barrier · LLM-free verification budget), cross-linked to `[STAGES]`/`[HISTORY]` for classic-SQA reclassification origins.
+- Records why v0.0.18 critique #3 (SCR — `author: llm` self-tag) was rejected: self-reporting is gameable; determinism + reviewer ≠ author is the structural equivalent.
+- `README.md` `[CLAIM]`: one-line cross-link to `iron-law.md [AI_ERA_RATIONALE]`.
+- i18n/ko mirrors synchronized.
+
+### Note
+- Surfaces "why now" previously implicit in the body. The two anchors were always present in the design (stage_4.1 (c) since v0.0.9, determinism since v0.0.18); this version names them.
+- No new detector · no new stage · no new Level · no schema breaking. iron-law.md gains 1 section (11 → 12).
+
+## v0.0.20 - 2026-05-17
+
+### Changed
+- `README.md` `[CONFORMANCE]`: `ears: <full | partial>` → `<full | partial | none>`. Aligns with `conformance/README.md [DECLARATION_FORMAT]` which already lists `none`. EARS is not mandatory; tools with `ears: none` are conformant.
+
+## v0.0.19 - 2026-05-17
+
+### Changed
+- `iron-law.md` → v0.0.4. `[HISTORY]` L4 row: `invented — anti AI-self-certification` → `reframed — reviewer ≠ LLM author`. Honest naming: `L4 is the original invention.` → `L4 = reframed HITL.`
+- `falsifications/README.md` → v0.0.2. `[ACCUMULATION_POLICY]` L4 row: `only invention` → `anchors reviewer ≠ author`.
+
+### Note
+- Corrects v0.0.17 wording that overlooked HITL prior art (Fagan 1976 · 4-eyes · UAT · RLHF).
+
+## v0.0.18 - 2026-05-17
+
+### BREAKING
+- `detectors.schema.json` → v0.0.3. `Detector.determinism` field added as **required** (enum: `deterministic` | `semantic` | `llm_assisted`). Schema `version` const `0.0.1` → `0.0.3`.
+
+### Added
+- `falsifications/` directory — operationalizes README `[CLAIM]` falsifiability clause. `README.md` + `template.md`; ko mirror at `i18n/ko/falsifications/`.
+- `GOVERNANCE.md` → v0.3. New `[DRAFT_GRADUATION]`: spec → stable `v1.0` requires (1) two independent impls pass L1-L4 fixtures AND (2) zero open L4 falsifications. Current: 1/2, 0/0.
+- `iron-law.md` → v0.0.3. New `[L4_DEFECT_CATEGORIES]`: 5 structurally non-automatable defect classes justifying L4 (intent misalignment · self-cert cycle · hidden side effects · trade-off acceptability · security context conflict).
+- `detectors.schema.json` `$defs.Determinism` enum + `rationale.determinism_guarantee` (18/19 deterministic, 1/19 semantic).
+
+### Changed
+- README `[CLAIM]` → v0.0.18. `provable consistency` → `falsifiable consistency`. Aligns with the falsifiability clause in the next sentence; adds cross-link to `falsifications/`.
+- README `[ARTIFACTS]` — `falsifications/` row added.
+- README `[LIMITATIONS]` — v0.0.18 baseline. Adoption line points to `GOVERNANCE.md [DRAFT_GRADUATION]`; new bullet for falsifications honest-zero.
+- `iron-law.md` `[STAGES]` Notes — 1 bullet: 18/19 detectors `determinism: deterministic` (LLM-free), 1 `semantic` (`CONVENTION_DRIFT`); tools may declare deterministic-only subset.
+- All 19 detector entries annotated with `determinism` (18 × `deterministic`, 1 × `semantic` for `CONVENTION_DRIFT`).
+
+### Note
+- Triggered by external 7-point critique of v0.0.17. Adoption: 5/7 (#1 lang · #4 detector determinism · #5 falsifications · #6 graduation · #7 L4 categories). Deferred: #2 (origin marker on 13-stage table). Rejected: #3 (SCR — `author: llm` self-reporting is gameable; #4 is the structural equivalent without the gaming surface).
+- Detector count (19), stage count (13), Levels (L1-L4) unchanged.
+- All cross-references verified; i18n/ko mirrors synchronized.
+
 ## v0.0.17 - 2026-05-17
 
 ### Changed

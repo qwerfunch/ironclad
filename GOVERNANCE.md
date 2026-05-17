@@ -1,6 +1,6 @@
 ---
 spec: ironclad/governance
-version: 0.2
+version: 0.3
 status: draft
 parent: ironclad
 references:
@@ -122,6 +122,20 @@ See [`CHANGELOG.md`](./CHANGELOG.md) for the SemVer policy (major: breaking · m
 
 A version bump is a Maintainer responsibility, triggered by merging RFC-accepting PRs.
 
+## [DRAFT_GRADUATION]
+
+Spec `status` transitions from `draft` to stable `v1.0` only when **both** conditions hold:
+
+1. **Two independent implementations**: at least two reference implementations from distinct authors / orgs pass the full L1-L4 conformance fixture suite (see [`conformance/level-{1..4}.md`](./conformance/)).
+2. **Zero open critical falsifications**: no accepted L4 falsification is unresolved (see [`falsifications/README.md`](./falsifications/README.md) `[ACCUMULATION_POLICY]`).
+
+v0.x = single-impl bootstrap (`harness-boot`); pre-1.0 by construction. Separate axis from the Phase A→B governance transition (`[PHASES]` above).
+
+| condition | check | current status |
+|---|---|---|
+| 2+ impls pass L1-L4 fixtures | conformance/ declarations | 1/2 (harness-boot only) |
+| 0 open L4 falsifications | falsifications/ status: accepted, unresolved | 0/0 (registry just opened) |
+
 ## [DEPRECATION_POLICY]
 
 When a spec element (section, detector, EARS pattern, Level, etc.) must be retired:
@@ -166,10 +180,11 @@ The spec itself does not execute code; vulnerabilities here are about *what the 
 
 MIT — see [`LICENSE`](./LICENSE).
 
-## [LIMITATIONS] v0.2
+## [LIMITATIONS] v0.3
 
 - No `proposals/` directory yet (created when first RFC raised).
 - No `SECURITY.md` yet (added when transitioning to Phase B).
 - BDFL succession protocol (what if maintainer disappears) not yet defined; deferred until Phase B has multiple maintainers.
 - Code of Conduct not yet adopted (Phase B trigger).
+- `[DRAFT_GRADUATION]` current status (1/2 impls, 0/0 falsifications) reflects v0.0.18 baseline — both conditions are zero-progress (no external impl, registry just opened).
 

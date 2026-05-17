@@ -13,6 +13,84 @@ Ironclad 표준의 모든 의미 있는 변경 사항.
 
 표준 버전은 `harness-boot` (reference implementation) 버전과 **독립**.
 
+## v0.0.23 - 2026-05-18
+
+### Changed
+- `iron-law.md` → v0.0.6. 내부 self-audit 에서 도출한 정직성 정정 3 건:
+  - `[LLM_COST_PROFILE]` 종결 문장: 정의 없는 "constant-cost graph pruning" jargon 제거; Big-O 오용 정정 — 피처당 LLM 비용이 상수에 bound, N 피처 총 비용은 O(N) (이전 "피처당 총 LLM 비용 O(1)" 표현이 per-unit 과 total 을 혼동).
+  - `[STAGES]` Notes (stage_4.1): "AI 자가검증 차단" → "AI 자가검증에 대한 구조적 장벽 (암호학적 보장 아님)". `conformance/level-4.md [LIMITATIONS]` 의 "rubber-stamping 자동 감지 불가" 인정과 정합.
+  - `[L4_DEFECT_CATEGORIES]`: 여러 카테고리에 해당하는 defect 의 tie-break 규칙 추가 — 근본 원인으로 분류 (self-cert#2 가 증상 intent-misalignment#1 을 만들면 #2 우선; 위협 모델 규칙 관련 시 #5 가 trade-off#4 우선).
+- `README.md` `[ARTIFACTS]`: `iron-law.md` 행 v0.0.5 → v0.0.6 (META_INTEGRITY 유지).
+- `README.md` frontmatter `version` 0.0.22 → 0.0.23.
+- i18n/ko 미러 동기화.
+
+### Note
+- detector 추가 X · stage 추가 X · Level 추가 X · 스키마 breaking X. iron-law.md 절 수 12 유지.
+- 세 변경 모두 정직성 정정 (과장 표현 → 정확 표현, 정의 없는 jargon → 제거, 암묵적 규칙 → 명시). 의미 재정의 없음.
+
+## v0.0.22 - 2026-05-18
+
+### Changed
+- `README.md` `[ARTIFACTS]`: `상태` 칼럼 → `버전` 칼럼, 실제 현재 버전으로 갱신 (`iron-law.md` v0.0.5 · `detectors.schema.json` v0.0.3 · `ears.md` v0.0.2 · `GOVERNANCE.md` v0.3 · `conformance/` v0.0.1 · `falsifications/` v0.0.2). "drafted" 잡음 제거 (frontmatter `status: draft` 가 이미 기록). 6 행 중 5 행이 "v0.0.1 drafted" 로 stale 했던 META_INTEGRITY 위반 해소.
+- `README.md` frontmatter `version` 0.0.20 → 0.0.22 (0.0.21 skip: 해당 릴리스는 `[CLAIM]` 1 줄 cross-link 만 추가하고 README frontmatter 를 bump 안 함 — 본 patch 가 실질 [ARTIFACTS]/[GLOSSARY] 변경과 함께 bump 처리).
+
+### Added
+- `README.md` `[GLOSSARY]` (11 → 14 항목): `Falsification` (반례 개념; v0.0.18 부터 README `[CLAIM]` 에서 인용) · `Self-certification cycle` (v0.0.21 부터 README `[CLAIM]` 에서 인용) · `LLM-free verification budget` (v0.0.21 부터 README `[CLAIM]` 에서 인용). "README index 가 정의 없는 용어를 참조한다" 공백 해소.
+- i18n/ko 미러 동기화.
+
+### Note
+- detector 추가 X · stage 추가 X · Level 추가 X · 스키마 breaking X.
+- 내부 self-audit (v0.0.21 정리 후) 에서 META_INTEGRITY drift 식별. 외부 비판 trigger 아님.
+
+## v0.0.21 - 2026-05-17
+
+### Added
+- `iron-law.md` → v0.0.5. 새 `[AI_ERA_RATIONALE]`: 두 AI 시대 구조적 앵커 (자가검증 순환 차단 · LLM 비의존 검증 예산), `[STAGES]`/`[HISTORY]` cross-link 으로 classic SQA 재분류 기원 참조.
+- v0.0.18 비평 #3 (SCR — `author: llm` 자기 태깅) 거부 사유 기록: self-reporting is gameable; determinism + reviewer ≠ author 가 구조적 동등물.
+- `README.md` `[CLAIM]`: `iron-law.md [AI_ERA_RATIONALE]` 1 줄 cross-link.
+- i18n/ko 미러 동기화.
+
+### Note
+- 본문에 암묵적이던 "왜 지금"을 표면화. 두 앵커는 설계상 이미 존재 (stage_4.1 (c) 는 v0.0.9 부터, determinism 은 v0.0.18 부터); 본 버전은 그것을 명시.
+- detector 추가 X · stage 추가 X · Level 추가 X · 스키마 breaking X. iron-law.md 절 수 11 → 12.
+
+## v0.0.20 - 2026-05-17
+
+### Changed
+- `README.md` `[CONFORMANCE]`: `ears: <full | partial>` → `<full | partial | none>`. `conformance/README.md [DECLARATION_FORMAT]` 이 이미 `none` 명시 — 일관화. EARS 강제 아님; `ears: none` 도구도 conformant.
+
+## v0.0.19 - 2026-05-17
+
+### Changed
+- `iron-law.md` → v0.0.4. `[HISTORY]` L4 행: `진짜 새 발명 — AI 자가검증 차단` → `재프레이밍 — reviewer ≠ LLM author`. Honest naming: `L4 만 *진짜 새 발명*.` → `L4 = 재프레이밍된 HITL.`
+- `falsifications/README.md` → v0.0.2. `[ACCUMULATION_POLICY]` L4 행: `유일한 발명` → `reviewer ≠ author 의 앵커`.
+
+### Note
+- HITL prior art (Fagan 1976 · 4-eyes · UAT · RLHF) 간과한 v0.0.17 표현 정정.
+
+## v0.0.18 - 2026-05-17
+
+### BREAKING
+- `detectors.schema.json` → v0.0.3. `Detector.determinism` 필드를 **required** 로 추가 (enum: `deterministic` | `semantic` | `llm_assisted`). Schema `version` const `0.0.1` → `0.0.3`.
+
+### Added
+- `falsifications/` 디렉터리 — README `[CLAIM]` 반증 가능성 조항 *운영화*. `README.md` + `template.md`; ko 미러는 `i18n/ko/falsifications/`.
+- `GOVERNANCE.md` → v0.3. 새 `[DRAFT_GRADUATION]`: spec → 안정 `v1.0` 은 (1) 독립 구현 2 개가 L1-L4 fixture 통과 AND (2) 미해결 L4 반증 0 건. 현재: 1/2, 0/0.
+- `iron-law.md` → v0.0.3. 새 `[L4_DEFECT_CATEGORIES]`: L4 를 정당화하는 5 *구조적 비자동화* 결함 (intent misalignment · self-cert cycle · hidden side effects · trade-off acceptability · security context conflict).
+- `detectors.schema.json` `$defs.Determinism` enum + `rationale.determinism_guarantee` (18/19 deterministic, 1/19 semantic).
+
+### Changed
+- README `[CLAIM]` → v0.0.18. "증명 가능하게" → "반증 가능하게". 다음 문장의 falsifiable 조항과 일관; `falsifications/` cross-link 추가.
+- README `[ARTIFACTS]` — `falsifications/` 행 추가.
+- README `[LIMITATIONS]` — v0.0.18 baseline. 채택 줄이 `GOVERNANCE.md [DRAFT_GRADUATION]` 을 가리킴; 반증 등록부 honest-zero 항목 추가.
+- `iron-law.md` `[STAGES]` Notes — 1 bullet: 19 detector 중 18 `determinism: deterministic` (LLM 비의존), 1 `semantic` (`CONVENTION_DRIFT`); 도구는 deterministic 만 선언 가능.
+- `detectors.schema.json` 19 detector 모두에 `determinism` 부여 (18 × `deterministic`, `CONVENTION_DRIFT` 1 × `semantic`).
+
+### Note
+- 외부 7 점 비평 trigger. 채택: 5/7 (#1 언어 · #4 detector 결정성 · #5 반증 등록부 · #6 졸업 조건 · #7 L4 카테고리). 보류: #2 (13-stage origin marker). 거부: #3 (SCR — `author: llm` 자기보고 게이밍 가능; #4 가 게이밍 surface 없는 구조적 동등물).
+- Detector 수 (19), stage 수 (13), Level (L1-L4) 불변.
+- 모든 cross-reference 검증; i18n/ko 미러 동기화.
+
 ## v0.0.17 - 2026-05-17
 
 ### Changed
